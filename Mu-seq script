@@ -1,0 +1,35 @@
+### create directory structure ###
+mkdir output
+mkdir output/processed
+mkdir output/mapped
+mkdir output/dedup
+
+
+### Remove TIR region and add validation sequence to read header ###
+fastp -i read1.fastq* -o /home/jts34805/output/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+^ '$' does not work on cluster, also, make sure that the roots are full and accurate
+
+### Process UMIs, trim and filter reads ###
+fastp -i /home/jts34805/output/processed/read1b.fq.gz -I /home/jts34805/output/processed/read2b.fq.gz -o /home/jts34805/output/processed/read1.fq.gz -O /home/jts34805/output/processed/read2.fq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /home/jts34805/output/processed/adapter.fa
+rm fastp.html fastp.json /home/jts34805/output/processed/read1a.fq.gz /home/jts34805/output/processed/read1b.fq.gz /home/jts34805/output/processed/read2b.fq.gz
+
+
+
+
+### Map to genome ###
+bowtie2 -x /home/jts34805/output/processed/W22.tar --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output/processed/read1.fq.gz -2 /home/jts34805/output/processed/read2.fq.gz | samtools view -bS > /home/jts34805/output/mapped/mapped.bam
+
+samtools sort /home/jts34805/output/mapped/mapped.bam -o output/mapped/mapped.bam
+samtools index /home/jts34805/output/mapped/mapped.bam
+
+
+
+### Deduplicate reads using UMIs ###
+umi_tools group -I "/home/jts34805/output/mapped/mapped.bam" --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S "output/dedup/mappedDedup.bam"
+
+
+
+### Prepare bam files for R ###
+samtools view -f 64 -F 4 /home/jts34805/output/dedup/mappedDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > /home/jts34805/output/output.txt
