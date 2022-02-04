@@ -7,7 +7,7 @@ mkdir output/dedup
 
 ### Remove TIR region and add validation sequence to read header ###
 fastp -i read1.fastq* -o /home/jts34805/output/processed/read1a.fq.gz -f 23 -A -G -Q -L
-fastp -i /home/jts34805/output/processed/read1a.fq.gz -I read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
 
 ^ '$' does not work on cluster, also, make sure that the roots are full and accurate
 
