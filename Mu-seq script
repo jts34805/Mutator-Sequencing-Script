@@ -16,9 +16,14 @@ fastp -i /home/jts34805/output/processed/read1b.fq.gz -I /home/jts34805/output/p
 rm fastp.html fastp.json /home/jts34805/output/processed/read1a.fq.gz /home/jts34805/output/processed/read1b.fq.gz /home/jts34805/output/processed/read2b.fq.gz
 
 
+### Unzip ###
+gzip -d Zm-W22-REFERENCE-NRGENE-2.0.fa.gz
+cat Zm* > W22
+##Unsure if needed above line?##
+
 
 ###build genome###
-bowtie2-build
+bowtie2-build W22 W22.indexed
 
 ### Map to genome ###
 bowtie2 -x /home/jts34805/output/processed/Zm-W22* --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output/processed/read1.fq.gz -2 /home/jts34805/output/processed/read2.fq.gz 
