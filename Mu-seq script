@@ -17,6 +17,8 @@ rm fastp.html fastp.json /home/jts34805/output/processed/read1a.fq.gz /home/jts3
 
 
 
+###build genome###
+bowtie2-build
 
 ### Map to genome ###
 bowtie2 -x /home/jts34805/output/processed/Zm-W22* --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output/processed/read1.fq.gz -2 /home/jts34805/output/processed/read2.fq.gz 
