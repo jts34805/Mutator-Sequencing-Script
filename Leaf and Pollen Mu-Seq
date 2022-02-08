@@ -1,0 +1,42 @@
+### Remove TIR region and add validation sequence to read header ###
+
+## Leaf Reads##
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+##Pollen Reads##
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+
+
+### Process UMIs, trim and filter reads ###
+fastp -i /home/jts34805/output/processed/read1b.fq.gz -I /home/jts34805/output/processed/read2b.fq.gz -o /home/jts34805/output/processed/read1.fq.gz -O /home/jts34805/output/processed/read2.fq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /home/jts34805/output/processed/adapter.fa
+rm fastp.html fastp.json /home/jts34805/output/processed/read1a.fq.gz /home/jts34805/output/processed/read1b.fq.gz /home/jts34805/output/processed/read2b.fq.gz
+
