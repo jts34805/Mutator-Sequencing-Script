@@ -26,7 +26,8 @@ cat Zm* > W22
 bowtie2-build W22 W22.indexed
 
 ### Map to genome ###
-bowtie2 -x /home/jts34805/output/W22Genome --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output/processed/read1.fq.gz -2 /home/jts34805/output/processed/read2.fq.gz |samtools view -bS > /home/jts34805/output/mapped/mapped.bam
+bowtie2 -x /home/jts34805/output/W22Genome --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output/processed/read1.fq.gz -2 /home/jts34805/output/processed/read2.fq.gz 
+samtools view -bS > /home/jts34805/output/mapped/mapped.bam
 samtools sort /home/jts34805/output/mapped/mapped.bam -o output/mapped/mapped.bam
 samtools index /home/jts34805/output/mapped/mapped.bam
 
