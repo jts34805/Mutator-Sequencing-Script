@@ -4,6 +4,8 @@ mkdir output/processed
 mkdir output/mapped
 mkdir output/dedup
 
+##To check if files are unzipping and look good
+zcat *.fq.gz | head
 
 ### Remove TIR region and add validation sequence to read header ###
 fastp -i read1.fastq* -o /home/jts34805/output/processed/read1a.fq.gz -f 23 -A -G -Q -L
