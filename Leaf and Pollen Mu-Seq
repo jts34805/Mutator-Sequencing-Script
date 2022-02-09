@@ -1,8 +1,9 @@
 ### Remove TIR region and add validation sequence to read header ###
 
 ## Leaf Reads##
-fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
-fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
+ml fastp
+fastp -i NA14-11-LEAF_R1_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i /home/jts34805/output/processed/NA14-11-LEAF_R1A_001.fastq.gz -I /home/jts34805/output/processed/NA14-11-LEAF_R2_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1B_001.fastq.gz -O /home/jts34805/output1/processed/NA14-11-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /home/jts34805/output/processed/fastp.html -A -G -Q -L
 
 fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
 fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
@@ -37,6 +38,10 @@ fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/p
 
 
 ### Process UMIs, trim and filter reads ###
-fastp -i /home/jts34805/output/processed/read1b.fq.gz -I /home/jts34805/output/processed/read2b.fq.gz -o /home/jts34805/output/processed/read1.fq.gz -O /home/jts34805/output/processed/read2.fq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /home/jts34805/output/processed/adapter.fa
-rm fastp.html fastp.json /home/jts34805/output/processed/read1a.fq.gz /home/jts34805/output/processed/read1b.fq.gz /home/jts34805/output/processed/read2b.fq.gz
+fastp -i /home/jts34805/output1/processed/NA14-11-LEAF_R1B_001.fastq.gz -I /home/jts34805/output1/processed/NA14-11-LEAF_R2B_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1_001.fq.gz -O /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /home/jts34805/output/processed/adapter.fa
+rm fastp.html fastp.json /home/jts34805/output1/processed/read1a.fastq.gz /home/jts34805/output1/processed/read1b.fq.gz /home/jts34805/output1/processed/read2b.fq.gz
+
+### Align Reads to W22 Genome###
+ml Bowtie2
+bowtie2 -x /home/jts34805/output1/W22Genome/W22Indexed --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output1/processed/NA14-11-LEAF_R1_001.fq.gz -2 /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fq.gz
 
