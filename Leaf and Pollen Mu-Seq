@@ -45,3 +45,11 @@ rm fastp.html fastp.json /home/jts34805/output1/processed/read1a.fastq.gz /home/
 ml Bowtie2
 bowtie2 -x /home/jts34805/output1/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output1/processed/NA14-11-LEAF_R1_001.fq.gz -2 /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fq.gz
 
+#View Alignment#
+samtools view -bS > /home/jts34805/output1/mapped/mapped.bam 
+samtools sort /home/jts34805/output1/mapped/mapped.bam -o output/mapped/mapped.bam
+samtools index /home/jts34805/output/mapped/mapped.bam
+
+### Deduplicate reads using UMIs ###
+umi_tools group -I "/home/jts34805/output1/mapped/mapped.bam" --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S "output/dedup/mappedDedup.bam"
+
