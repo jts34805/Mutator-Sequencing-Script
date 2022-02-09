@@ -3,7 +3,7 @@
 ## Leaf Reads##
 ml fastp
 fastp -i NA14-11-LEAF_R1_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /home/jts34805/output1/processed/NA14-11-LEAF_R1A_001.fastq.gz -I /home/jts34805/output/processed/NA14-11-LEAF_R2_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1B_001.fastq.gz -O /home/jts34805/output1/processed/NA14-11-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /home/jts34805/output/processed/fastp.html -A -G -Q -L
+fastp -i /home/jts34805/output1/processed/NA14-11-LEAF_R1A_001.fastq.gz -I /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fastq.gz -o /home/jts34805/output1/processed/NA14-11-LEAF_R1B_001.fastq.gz -O /home/jts34805/output1/processed/NA14-11-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /home/jts34805/output/processed/fastp.html -A -G -Q -L
 
 fastp -i *.fastq.gz -o /home/jts34805/output1/processed/read1a.fq.gz -f 23 -A -G -Q -L
 fastp -i /home/jts34805/output/processed/read1a.fq.gz -I /home/jts34805/output/processed/read2.fq.gz -o /home/jts34805/output/processed/read1b.fq.gz -O /home/jts34805/output/processed/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
