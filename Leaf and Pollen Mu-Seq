@@ -43,5 +43,5 @@ rm fastp.html fastp.json /home/jts34805/output1/processed/read1a.fastq.gz /home/
 
 ### Align Reads to W22 Genome###
 ml Bowtie2
-bowtie2 -x /home/jts34805/output1/W22Genome/W22Indexed --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output1/processed/NA14-11-LEAF_R1_001.fq.gz -2 /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fq.gz
+bowtie2 -x /home/jts34805/output1/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /home/jts34805/output1/processed/NA14-11-LEAF_R1_001.fq.gz -2 /home/jts34805/output1/processed/NA14-11-LEAF_R2_001.fq.gz
 
