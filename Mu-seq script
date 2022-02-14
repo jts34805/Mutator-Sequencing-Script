@@ -24,6 +24,7 @@ cat Zm* > W22
 ##Unsure if needed above line?##
 
 
+
 ###build genome###
 bowtie2-build W22 W22.indexed
 
