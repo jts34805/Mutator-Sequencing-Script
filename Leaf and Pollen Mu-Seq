@@ -1,29 +1,36 @@
-### Remove TIR region and add validation sequence to read header ###
+#!/bin/bash
+#SBATCH --job-name=MuSeqTrimReads
+#SBATCH --partition=batch
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --constraint=AMD
+#SBATCH --time=10:00:00
+#SBATCH --mem=10gb
 
-## Leaf Reads##
+cd $SLURM_SUBMIT_DIR
 
+ml fastp/0.23.2
+fastp -i Rawdata/NA14-11-LEAF_R1_001.fastq.gz -o processed/NA14-11-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA14-11-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-11-LEAF_R2_001.fastq.gz -o processed/NA14-11-LEAF_R1B_001.fastq.gz -O processed/NA14-11-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-ml fastp
-fastp -i /Rawdata/NA14-11-LEAF_R1_001.fastq.gz -o /processed/NA14-11-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA14-11-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-11-LEAF_R2_001.fastq.gz -o /processed/NA14-11-LEAF_R1B_001.fastq.gz -O /processed/NA14-11-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA14-9-LEAF_R1_001.fastq.gz -o processed/NA14-9-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA14-9-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-9-LEAF_R2_001.fastq.gz -o processed/NA14-9-LEAF_R1B_001.fastq.gz -O processed/NA14-9-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA14-9-LEAF_R1_001.fastq.gz -o /processed/NA14-9-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA14-9-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-9-LEAF_R2_001.fastq.gz -o /processed/NA14-9-LEAF_R1B_001.fastq.gz -O /processed/NA14-9-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-12-LEAF_R1_001.fastq.gz -o processed/NA17-12-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-12-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-12-LEAF_R2_001.fastq.gz -o processed/NA17-12-LEAF_R1B_001.fastq.gz -O processed/NA17-12-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-12-LEAF_R1_001.fastq.gz -o /processed/NA17-12-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-12-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-12-LEAF_R2_001.fastq.gz -o /processed/NA17-12-LEAF_R1B_001.fastq.gz -O /processed/NA17-12-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-22-LEAF_R1_001.fastq.gz -o processed/NA17-22-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-22-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-22-LEAF_R2_001.fastq.gz -o processed/NA17-22-LEAF_R1B_001.fastq.gz -O processed/NA17-22-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-22-LEAF_R1_001.fastq.gz -o /processed/NA17-22-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-22-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-22-LEAF_R2_001.fastq.gz -o /processed/NA17-22-LEAF_R1B_001.fastq.gz -O /processed/NA17-22-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-23-LEAF_R1_001.fastq.gz -o processed/NA17-23-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-23-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-23-LEAF_R2_001.fastq.gz -o processed/NA17-23-LEAF_R1B_001.fastq.gz -O processed/NA17-23-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-23-LEAF_R1_001.fastq.gz -o /processed/NA17-23-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-23-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-23-LEAF_R2_001.fastq.gz -o /processed/NA17-23-LEAF_R1B_001.fastq.gz -O /processed/NA17-23-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-24-LEAF_R1_001.fastq.gz -o processed/NA17-24-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-24-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-24-LEAF_R2_001.fastq.gz -o processed/NA17-24-LEAF_R1B_001.fastq.gz -O processed/NA17-24-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-24-LEAF_R1_001.fastq.gz -o /processed/NA17-24-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-24-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-24-LEAF_R2_001.fastq.gz -o /processed/NA17-24-LEAF_R1B_001.fastq.gz -O /processed/NA17-24-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
-
-fastp -i /Rawdata/NA14-8-LEAF_R1_001.fastq.gz -o /processed/NA14-8-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA14-8-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-8-LEAF_R2_001.fastq.gz -o /processed/NA14-8-LEAF_R1B_001.fastq.gz -O /processed/NA14-8-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA14-8-LEAF_R1_001.fastq.gz -o processed/NA14-8-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA14-8-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-8-LEAF_R2_001.fastq.gz -o processed/NA14-8-LEAF_R1B_001.fastq.gz -O processed/NA14-8-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
 
 
@@ -31,42 +38,43 @@ fastp -i /processed/NA14-8-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-8-LEAF_R2_001.f
 ##Pollen Reads##
 
 
-fastp -i /Rawdata/NA17-12-POLLEN_R1_001.fastq.gz -o /processed/NA17-12-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-12-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-12-POLLEN_R2_001.fastq.gz -o /processed/NA17-12-POLLEN_R1B_001.fastq.gz -O /processed/NA17-12-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-12-POLLEN_R1_001.fastq.gz -o processed/NA17-12-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-12-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-12-POLLEN_R2_001.fastq.gz -o processed/NA17-12-POLLEN_R1B_001.fastq.gz -O processed/NA17-12-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-22-POLLEN_R1_001.fastq.gz -o /processed/NA17-22-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-22-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-22-POLLEN_R2_001.fastq.gz -o /processed/NA17-22-POLLEN_R1B_001.fastq.gz -O /processed/NA17-22-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-22-POLLEN_R1_001.fastq.gz -o processed/NA17-22-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-22-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-22-POLLEN_R2_001.fastq.gz -o processed/NA17-22-POLLEN_R1B_001.fastq.gz -O processed/NA17-22-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-23-POLLEN_R1_001.fastq.gz -o /processed/NA17-23-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-23-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-23-POLLEN_R2_001.fastq.gz -o /processed/NA17-23-POLLEN_R1B_001.fastq.gz -O /processed/NA17-23-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-23-POLLEN_R1_001.fastq.gz -o processed/NA17-23-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-23-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-23-POLLEN_R2_001.fastq.gz -o processed/NA17-23-POLLEN_R1B_001.fastq.gz -O processed/NA17-23-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
-fastp -i /Rawdata/NA17-24-POLLEN_R1_001.fastq.gz -o /processed/NA17-24-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i /processed/NA17-24-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-24-POLLEN_R2_001.fastq.gz -o /processed/NA17-24-POLLEN_R1B_001.fastq.gz -O /processed/NA17-24-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+fastp -i Rawdata/NA17-24-POLLEN_R1_001.fastq.gz -o processed/NA17-24-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-24-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-24-POLLEN_R2_001.fastq.gz -o processed/NA17-24-POLLEN_R1B_001.fastq.gz -O processed/NA17-24-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
+
 
 
 
 ### Process UMIs, trim and filter reads ###
 ##Leaf Data##
 
-fastp -i /processed/NA14-11-LEAF_R1B_001.fastq.gz -I /processed/NA14-11-LEAF_R2B_001.fastq.gz -o /filtered/NA14-11-LEAF_R1_001.fastq.gz -O /filtered/NA14-11-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA14-11-LEAF_R1B_001.fastq.gz -I processed/NA14-11-LEAF_R2B_001.fastq.gz -o filtered/NA14-11-LEAF_R1_001.fastq.gz -O filtered/NA14-11-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA14-11-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA14-11-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA14-11-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA14-8-LEAF_R1B_001.fastq.gz -I /processed/NA14-8-LEAF_R2B_001.fastq.gz -o /filtered/NA14-8-LEAF_R1_001.fastq.gz -O /filtered/NA14-8-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA14-8-LEAF_R1B_001.fastq.gz -I processed/NA14-8-LEAF_R2B_001.fastq.gz -o filtered/NA14-8-LEAF_R1_001.fastq.gz -O filtered/NA14-8-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA14-8-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA14-8-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA14-8-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA14-9-LEAF_R1B_001.fastq.gz -I /processed/NA14-9-LEAF_R2B_001.fastq.gz -o /filtered/NA14-9-LEAF_R1_001.fastq.gz -O /filtered/NA14-9-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA14-9-LEAF_R1B_001.fastq.gz -I processed/NA14-9-LEAF_R2B_001.fastq.gz -o filtered/NA14-9-LEAF_R1_001.fastq.gz -O filtered/NA14-9-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA14-9-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA14-9-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA14-9-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-12-LEAF_R1B_001.fastq.gz -I /processed/NA17-12-LEAF_R2B_001.fastq.gz -o /filtered/NA17-12-LEAF_R1_001.fastq.gz -O /filtered/NA17-12-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-12-LEAF_R1B_001.fastq.gz -I processed/NA17-12-LEAF_R2B_001.fastq.gz -o filtered/NA17-12-LEAF_R1_001.fastq.gz -O filtered/NA17-12-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-12-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-22-LEAF_R1B_001.fastq.gz -I /processed/NA17-22-LEAF_R2B_001.fastq.gz -o /filtered/NA17-22-LEAF_R1_001.fastq.gz -O /filtered/NA17-22-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-22-LEAF_R1B_001.fastq.gz -I processed/NA17-22-LEAF_R2B_001.fastq.gz -o filtered/NA17-22-LEAF_R1_001.fastq.gz -O filtered/NA17-22-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-22-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-22-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-22-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-23-LEAF_R1B_001.fastq.gz -I /processed/NA17-23-LEAF_R2B_001.fastq.gz -o /filtered/NA17-23-LEAF_R1_001.fastq.gz -O /filtered/NA17-23-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-23-LEAF_R1B_001.fastq.gz -I processed/NA17-23-LEAF_R2B_001.fastq.gz -o filtered/NA17-23-LEAF_R1_001.fastq.gz -O filtered/NA17-23-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-23-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-23-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-23-LEAF_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-24-LEAF_R1B_001.fastq.gz -I /processed/NA17-24-LEAF_R2B_001.fastq.gz -o /filtered/NA17-24-LEAF_R1_001.fastq.gz -O /filtered/NA17-24-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-24-LEAF_R1B_001.fastq.gz -I processed/NA17-24-LEAF_R2B_001.fastq.gz -o filtered/NA17-24-LEAF_R1_001.fastq.gz -O filtered/NA17-24-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-24-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-24-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-24-LEAF_R2B_001.fastq.gz
 
 
@@ -75,17 +83,18 @@ rm fastp.html fastp.json /scratch/jts34805/processed/NA17-24-LEAF_R1A_001.fastq.
 
 ##Pollen Reads###
 
-fastp -i /processed/NA17-12-POLLEN_R1B_001.fastq.gz -I /processed/NA17-12-POLLEN_R2B_001.fastq.gz -o /filtered/NA17-12-POLLEN_R1_001.fastq.gz -O /filtered/NA17-12-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-12-POLLEN_R1B_001.fastq.gz -I processed/NA17-12-POLLEN_R2B_001.fastq.gz -o filtered/NA17-12-POLLEN_R1_001.fastq.gz -O filtered/NA17-12-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-12-POLLEN_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-12-POLLEN_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-12-POLLEN_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-22-POLLEN_R1B_001.fastq.gz -I /processed/NA17-22-POLLEN_R2B_001.fastq.gz -o /filtered/NA17-22-POLLEN_R1_001.fastq.gz -O /filtered/NA17-22-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-22-POLLEN_R1B_001.fastq.gz -I processed/NA17-22-POLLEN_R2B_001.fastq.gz -o filtered/NA17-22-POLLEN_R1_001.fastq.gz -O filtered/NA17-22-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-22-POLLEN_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-22-POLLEN_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-22-POLLEN_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-23-POLLEN_R1B_001.fastq.gz -I /processed/NA17-23-POLLEN_R2B_001.fastq.gz -o /filtered/NA17-23-POLLEN_R1_001.fastq.gz -O /filtered/NA17-23-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-23-POLLEN_R1B_001.fastq.gz -I processed/NA17-23-POLLEN_R2B_001.fastq.gz -o filtered/NA17-23-POLLEN_R1_001.fastq.gz -O filtered/NA17-23-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-23-POLLEN_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-23-POLLEN_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-23-POLLEN_R2B_001.fastq.gz
 
-fastp -i /processed/NA17-24-POLLEN_R1B_001.fastq.gz -I /processed/NA17-24-POLLEN_R2B_001.fastq.gz -o /filtered/NA17-24-POLLEN_R1_001.fastq.gz -O /filtered/NA17-24-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
+fastp -i processed/NA17-24-POLLEN_R1B_001.fastq.gz -I processed/NA17-24-POLLEN_R2B_001.fastq.gz -o filtered/NA17-24-POLLEN_R1_001.fastq.gz -O filtered/NA17-24-POLLEN_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/fastp.html
 rm fastp.html fastp.json /scratch/jts34805/processed/NA17-24-POLLEN_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-24-POLLEN_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-24-POLLEN_R2B_001.fastq.gz
+
 
 
 
