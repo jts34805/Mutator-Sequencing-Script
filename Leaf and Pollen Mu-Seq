@@ -37,7 +37,6 @@ fastp -i processed/NA14-8-LEAF_R1A_001.fastq.gz -I Rawdata/NA14-8-LEAF_R2_001.fa
 
 ##Pollen Reads##
 
-
 fastp -i Rawdata/NA17-12-POLLEN_R1_001.fastq.gz -o processed/NA17-12-POLLEN_R1A_001.fastq.gz -f 23 -A -G -Q -L
 fastp -i processed/NA17-12-POLLEN_R1A_001.fastq.gz -I Rawdata/NA17-12-POLLEN_R2_001.fastq.gz -o processed/NA17-12-POLLEN_R1B_001.fastq.gz -O processed/NA17-12-POLLEN_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /scratch/jts34805/fastp.html -A -G -Q -L
 
@@ -102,19 +101,19 @@ rm fastp.html fastp.json /scratch/jts34805/processed/NA17-24-POLLEN_R1A_001.fast
 ml Bowtie2
 
 ##Leaf Reads##
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/14-11-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-11-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/14-8-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-8-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-9-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-9-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/14-9-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-9-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-9-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-9-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/17-12-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-12-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/17-22-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-22-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/17-23-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-23-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/17-24-LEAFmapped.sam
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-24-LEAFmapped.sam
 
 
 
@@ -136,10 +135,50 @@ bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-dis
 ##Leaf Maps##
 samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
 samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam /home/jts34805/output1/mapped/indexed.ba
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
 
 
 ##Pollen Maps##
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
+samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
+samtools index /home/jts34805/output1/mapped/sorted.bam 
+
 
 
 
