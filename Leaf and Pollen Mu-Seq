@@ -131,57 +131,83 @@ bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-dis
 
 
 #View Alignment#
+ml SAMtools/1.14-GCC-8.3.0
 
 ##Leaf Maps##
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA14-11-LEAFmapped.bam  mapped/NA14-11-LEAFmapped.sam
+samtools sort mapped/NA14-11-LEAFmapped.bam -o mapped/NA14-11-LEAFmapped.bam
+samtools index mapped/NA14-11-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA14-8-LEAFmapped.bam  mapped/NA14-8-LEAFmapped.sam
+samtools sort mapped/NA14-8-LEAFmapped.bam -o mapped/NA14-8-LEAFmapped.bam
+samtools index mapped/NA14-8-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA14-9-LEAFmapped.bam  mapped/NA14-9-LEAFmapped.sam
+samtools sort mapped/NA14-9-LEAFmapped.bam -o mapped/NA14-9-LEAFmapped.bam
+samtools index mapped/NA14-9-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA17-12-LEAFmapped.bam  mapped/NA17-12-LEAFmapped.sam
+samtools sort mapped/NA17-12-LEAFmapped.bam -o mapped/NA17-12-LEAFmapped.bam
+samtools index mapped/NA17-12-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA17-22-LEAFmapped.bam  mapped/NA17-22-LEAFmapped.sam
+samtools sort mapped/NA17-22-LEAFmapped.bam -o mapped/NA17-22-LEAFmapped.bam
+samtools index mapped/NA17-22-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA17-23-LEAFmapped.bam  mapped/NA17-23-LEAFmapped.sam
+samtools sort mapped/NA17-23-LEAFmapped.bam -o mapped/NA17-23-LEAFmapped.bam
+samtools index mapped/NA17-23-LEAFmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
-
+samtools view -b -o mapped/NA17-24-LEAFmapped.bam  mapped/NA17-24-LEAFmapped.sam
+samtools sort mapped/NA17-24-LEAFmapped.bam -o mapped/NA17-24-LEAFmapped.bam
+samtools index mapped/NA17-24-LEAFmapped.bam
 
 ##Pollen Maps##
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/ NA17-12-POLLENmapped.bam  mapped/ NA17-12-POLLENmapped.sam
+samtools sort mapped/ NA17-12-POLLENmapped.bam -o mapped/ NA17-12-POLLENmapped.bam
+samtools index mapped/ NA17-12-POLLENmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA17-22-POLLENmapped.bam  mapped/NA17-22-POLLENmapped.sam
+samtools sort mapped/NA17-22-POLLENmapped.bam -o mapped/NA17-22-POLLENmapped.bam
+samtools index mapped/NA17-22-POLLENmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
+samtools view -b -o mapped/NA17-23-POLLENmapped.bam  mapped/NA17-23-POLLENmapped.sam
+samtools sort mapped/NA17-23-POLLENmapped.bam -o mappedNA17-23-POLLENmapped.bam
+samtools index mapped/NA17-23-POLLENmapped.bam
 
-samtools view -b /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools sort  /scratch/jts34805/mapped/14-11-LEAFmapped.sam 
-samtools index /home/jts34805/output1/mapped/sorted.bam 
-
+samtools view -b -o mapped/NA17-24-POLLENmapped.bam  mapped/NA17-24-POLLENmapped.sam
+samtools sort mapped/NA17-24-POLLENmapped.bam -o mapped/NA17-24-POLLENmapped.bam
+samtools index mapped/NA17-24-POLLENmapped.bam
 
 
 
 ### Deduplicate reads using UMIs ###
-umi_tools group -I "/home/jts34805/output1/mapped/mapped.bam" --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S "output/dedup/mappedDedup.bam"
+ml UMI-tools/1.0.1-foss-2019b-Python-3.7.4
+
+
+##DEDUP Leaf Reads##
+umi_tools group -I mapped/NA14-11-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-11-LEAFDedup.bam
+
+umi_tools group -I mapped/NA14-9-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-9-LEAFDedup.bam
+
+umi_tools group -I mapped/NA14-8-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-8-LEAFDedup.bam
+
+umi_tools group -I mapped/NANA17-12-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-12-LEAFDedup.bam
+
+umi_tools group -I mapped/NA17-22-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-22-LEAFDedup.bam
+
+umi_tools group -I mapped/NA17-23-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-23-LEAFDedup.bam
+
+umi_tools group -I mapped/NA17-24-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-24-LEAFDedup.bam
+
+
+##DEDUP Pollen Reads##
+
+umi_tools group -I mapped/NA17-12-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-12-POLLENDedup.bam
+
+umi_tools group -I mapped/NA17-22-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-22-POLLENDedup.bam
+
+umi_tools group -I mapped/NA17-23-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-23-POLLENDedup.bam
+
+umi_tools group -I mapped/NA17-24-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-24-POLLENDedup.bam
 
