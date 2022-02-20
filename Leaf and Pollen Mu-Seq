@@ -163,16 +163,16 @@ samtools sort mapped/NA17-24-LEAFmapped.bam -o mapped/NA17-24-LEAFmapped.bam
 samtools index mapped/NA17-24-LEAFmapped.bam
 
 ##Pollen Maps##
-samtools view -b -o mapped/ NA17-12-POLLENmapped.bam  mapped/ NA17-12-POLLENmapped.sam
-samtools sort mapped/ NA17-12-POLLENmapped.bam -o mapped/ NA17-12-POLLENmapped.bam
-samtools index mapped/ NA17-12-POLLENmapped.bam
+samtools view -b -o mapped/NA17-12-POLLENmapped.bam  mapped/NA17-12-POLLENmapped.sam
+samtools sort mapped/NA17-12-POLLENmapped.bam -o mapped/NA17-12-POLLENmapped.bam
+samtools index mapped/NA17-12-POLLENmapped.bam
 
 samtools view -b -o mapped/NA17-22-POLLENmapped.bam  mapped/NA17-22-POLLENmapped.sam
 samtools sort mapped/NA17-22-POLLENmapped.bam -o mapped/NA17-22-POLLENmapped.bam
 samtools index mapped/NA17-22-POLLENmapped.bam
 
 samtools view -b -o mapped/NA17-23-POLLENmapped.bam  mapped/NA17-23-POLLENmapped.sam
-samtools sort mapped/NA17-23-POLLENmapped.bam -o mappedNA17-23-POLLENmapped.bam
+samtools sort mapped/NA17-23-POLLENmapped.bam -o mapped/NA17-23-POLLENmapped.bam
 samtools index mapped/NA17-23-POLLENmapped.bam
 
 samtools view -b -o mapped/NA17-24-POLLENmapped.bam  mapped/NA17-24-POLLENmapped.sam
@@ -186,28 +186,63 @@ ml UMI-tools/1.0.1-foss-2019b-Python-3.7.4
 
 
 ##DEDUP Leaf Reads##
-umi_tools group -I mapped/NA14-11-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-11-LEAFDedup.bam
+umi_tools group -I mapped/NA14-11-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA14-11-LEAFDedup.bam
 
-umi_tools group -I mapped/NA14-9-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-9-LEAFDedup.bam
+umi_tools group -I mapped/NA14-9-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA14-9-LEAFDedup.bam
 
-umi_tools group -I mapped/NA14-8-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA14-8-LEAFDedup.bam
+umi_tools group -I mapped/NA14-8-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA14-8-LEAFDedup.bam
 
-umi_tools group -I mapped/NANA17-12-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-12-LEAFDedup.bam
+umi_tools group -I mapped/NANA17-12-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-12-LEAFDedup.bam
 
-umi_tools group -I mapped/NA17-22-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-22-LEAFDedup.bam
+umi_tools group -I mapped/NA17-22-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-22-LEAFDedup.bam
 
-umi_tools group -I mapped/NA17-23-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-23-LEAFDedup.bam
+umi_tools group -I mapped/NA17-23-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-23-LEAFDedup.bam
 
-umi_tools group -I mapped/NA17-24-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-24-LEAFDedup.bam
+umi_tools group -I mapped/NA17-24-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-24-LEAFDedup.bam
 
 
 ##DEDUP Pollen Reads##
 
-umi_tools group -I mapped/NA17-12-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-12-POLLENDedup.bam
+umi_tools group -I mapped/NA17-12-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-12-POLLENDedup.bam
 
-umi_tools group -I mapped/NA17-22-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-22-POLLENDedup.bam
+umi_tools group -I mapped/NA17-22-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-22-POLLENDedup.bam
 
-umi_tools group -I mapped/NA17-23-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-23-POLLENDedup.bam
+umi_tools group -I mapped/NA17-23-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-23-POLLENDedup.bam
 
-umi_tools group -I mapped/NA17-24-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S output/dedup/NA17-24-POLLENDedup.bam
+umi_tools group -I mapped/NA17-24-POLLENmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-24-POLLENDedup.bam
+
+##Prepare Files for R##
+ml SAMtools/1.14-GCC-8.3.0
+
+##Leaf Files##
+samtools view -f 64 -F 4 dedup/NA14-11-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA14-8-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA14-9-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-12-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-22-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-23-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-24-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+
+
+##Pollen Files##
+samtools view -f 64 -F 4 dedup/NA17-12-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-22-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-23-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+samtools view -f 64 -F 4 dedup/NA17-24-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+
+
+
+
+
+
 
