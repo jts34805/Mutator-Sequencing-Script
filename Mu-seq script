@@ -7,7 +7,7 @@ mkdir output/dedup
 ##To check if files are unzipping and look good
 zcat *.fq.gz | head
 
-### Remove TIR region and add validation sequence to read header ###
+### Remove TIR region from primer and add validation sequence to read header ###
 fastp -i read1.fastq* -o /home/jts34805/output/processed/read1a.fq -f 23 -A -G -Q -L
 fastp -i /home/jts34805/output/processed/read1a.fq -I /home/jts34805/output/read2.fastq -o /home/jts34805/output/processed/read1b.fq -O /home/jts34805/output/processed/read2b.fq -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h /processed/fastp.html -A -G -Q -L
 
