@@ -100,7 +100,7 @@ rm fastp.html fastp.json /scratch/jts34805/processed/NA17-24-POLLEN_R1A_001.fast
 ### Align Reads to W22 Genome###
 ml Bowtie2
 
-##Leaf Reads##
+##Leaf Reads## #Phred33 means that each base has a 99.9% base call accuracy 
 bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-11-LEAFmapped.sam
 
 bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-8-LEAFmapped.sam
@@ -181,7 +181,7 @@ samtools index mapped/NA17-24-POLLENmapped.bam
 
 
 
-### Deduplicate reads using UMIs ###
+### Deduplicate reads using UMI and mapping coordinates ###
 ml UMI-tools/1.0.1-foss-2019b-Python-3.7.4
 
 
