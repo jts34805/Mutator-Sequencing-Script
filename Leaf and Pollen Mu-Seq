@@ -215,31 +215,30 @@ umi_tools group -I mapped/NA17-24-POLLENmapped.bam --paired --chimeric-pairs dis
 ml SAMtools/1.14-GCC-8.3.0
 
 ##Leaf Files##
-samtools view -f 64 -F 4 dedup/NA14-11-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA14-11-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $
 
-samtools view -f 64 -F 4 dedup/NA14-8-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA14-8-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $$
 
-samtools view -f 64 -F 4 dedup/NA14-9-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA14-9-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $$
 
-samtools view -f 64 -F 4 dedup/NA17-12-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-12-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $
 
-samtools view -f 64 -F 4 dedup/NA17-22-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-22-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $
 
-samtools view -f 64 -F 4 dedup/NA17-23-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-23-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $
 
-samtools view -f 64 -F 4 dedup/NA17-24-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-24-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $
 
 
 
 ##Pollen Files##
-samtools view -f 64 -F 4 dedup/NA17-12-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-12-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1$
 
-samtools view -f 64 -F 4 dedup/NA17-22-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-22-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1$
 
-samtools view -f 64 -F 4 dedup/NA17-23-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
+samtools view -f 64 -F 4 dedup/NA17-23-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1$
 
-samtools view -f 64 -F 4 dedup/NA17-24-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $3, $4, $5, $6, $7, $8}' > Routput/NA14-11-LEAF.txt
-
+samtools view -f 64 -F 4 dedup/NA17-24-POLLENDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10}' | awk '{sub(/:UMI_.*/,"",$4); print $1$
 
 
 
