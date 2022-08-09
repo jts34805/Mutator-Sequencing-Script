@@ -15,10 +15,10 @@ cd $SLURM_SUBMIT_DIR
 ml fastp/0.23.2
 
 fastp -i Rawdata/NA17-12-LEAF_R1_001.fastq.gz -o processed/NA17-12-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
-fastp -i processed/NA17-12-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-12-LEAF_R2_001.fastq.gz -o processed/NA17-12-LEAF_R1B_001.fastq.gz -O processed/NA17-12-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h
+fastp -i processed/NA17-12-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-12-LEAF_R2_001.fastq.gz -o processed/NA17-12-LEAF_R1B_001.fastq.gz -O processed/NA17-12-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
 
-fastp -i processed/NA17-12-LEAF_R1B_001.fastq.gz -I processed/NA17-12-LEAF_R2B_001.fastq.gz -o filtered/NA17-12-LEAF_R1_001.fastq.gz -O filtered/NA17-12-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len =
-rm fastp.html fastp.json /scratch/jts34805/processed/NA17-12-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R2B_001.fastq.gz
+fastp -i processed/NA17-12-LEAF_R1B_001.fastq.gz -I processed/NA17-12-LEAF_R2B_001.fastq.gz -o filtered/NA17-12-LEAF_R1_001.fastq.gz -O filtered/NA17-12-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /home/jts34805/output/adapter.fa
+rm /scratch/jts34805/processed/NA17-12-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R2B_001.fastq.gz
 
 rmmod fastp/0.23.2
 
