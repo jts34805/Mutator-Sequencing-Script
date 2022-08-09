@@ -1,0 +1,49 @@
+                                                                                                   Modified
+
+#!/bin/bash
+#SBATCH --job-name=fastptotxt
+#SBATCH --partition=batch
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --constraint=AMD
+#SBATCH --time=10:00:00
+#SBATCH --mem=20gb
+
+cd $SLURM_SUBMIT_DIR
+
+ml fastp/0.23.2
+
+fastp -i Rawdata/NA17-12-LEAF_R1_001.fastq.gz -o processed/NA17-12-LEAF_R1A_001.fastq.gz -f 23 -A -G -Q -L
+fastp -i processed/NA17-12-LEAF_R1A_001.fastq.gz -I Rawdata/NA17-12-LEAF_R2_001.fastq.gz -o processed/NA17-12-LEAF_R1B_001.fastq.gz -O processed/NA17-12-LEAF_R2B_001.fastq.gz -U --umi_loc read1 --umi_len$
+
+fastp -i processed/NA17-12-LEAF_R1B_001.fastq.gz -I processed/NA17-12-LEAF_R2B_001.fastq.gz -o filtered/NA17-12-LEAF_R1_001.fastq.gz -O filtered/NA17-12-LEAF_R2_001.fastq.gz -U --umi_loc read2 --umi_len $
+rm fastp.html fastp.json /scratch/jts34805/processed/NA17-12-LEAF_R1A_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R1B_001.fastq.gz /scratch/jts34805/processed/NA17-12-LEAF_R2B_001.fastq.gz
+
+rmmod fastp/0.23.2
+
+ml Bowtie2
+
+bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-LEAF_R2_001.fastq.$
+
+rmmod Bowtie2
+
+ml SAMtools/1.14-GCC-8.3.0
+
+samtools view -b -o mapped/NA17-12-LEAFmapped.bam  mapped/NA17-12-LEAFmapped.sam
+samtools sort mapped/NA17-12-LEAFmapped.bam -o mapped/NA17-12-LEAFmapped.bam
+samtools index mapped/NA17-12-LEAFmapped.bam
+
+rmmod ml SAMtools/1.14-GCC-8.3.0
+### Deduplicate reads using UMI and mapping coordinates ###
+ml UMI-tools/1.0.1-foss-2019b-Python-3.7.4
+
+umi_tools group -I mapped/NANA17-12-LEAFmapped.bam --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/NA17-12-LEAFDedup.bam
+
+rmmod UMI-tools/1.0.1-foss-2019b-Python-3.7.4
+
+ml SAMtools/1.14-GCC-8.3.0
+
+samtools view -f 64 -F 4 output/dedup/mappedDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > Routputtest/NA17-12LEAF.txt
+
+
