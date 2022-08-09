@@ -44,6 +44,6 @@ rmmod UMI-tools/1.0.1-foss-2019b-Python-3.7.4
 
 ml SAMtools/1.14-GCC-8.3.0
 
-samtools view -f 64 -F 4 output/dedup/mappedDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > Routputtest/NA17-12LEAF.txt
+samtools view -f 64 -F 4 output/dedup/NA17-12-LEAFDedup.bam | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > Routputtest/NA17-12LEAF.txt
 
 
