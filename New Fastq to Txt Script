@@ -109,10 +109,10 @@ rmmod fastp/0.23.2
 
 
 ### Align Reads to W22 Genome###
-ml Bowtie2
+ml Bowtie2/2.4.2-GCC-10.2.0
 
 ##Leaf Reads## #Phred33 means that each base has a 99.9% base call accuracy
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-11-LEAFmapped.sam
+bowtie2 -x W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-11-LEAF_R1_001.fastq.gz -2 filtered/NA14-11-LEAF_R2_001.fastq.gz -S mapped/NA14-11-LEAFmapped.sam
 
 bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-8-LEAFmapped.sam
 
