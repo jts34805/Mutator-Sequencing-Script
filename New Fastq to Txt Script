@@ -1,11 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=fastptotxt
 #SBATCH --partition=batch
-#SBATCH --ntasks=1
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks=8
+#SBATCH --cpus-per-task=8
 #SBATCH --constraint=AMD
-#SBATCH --time=10:00:00
+#SBATCH --time=24:00:00
 #SBATCH --mem=20gb
 
 cd $SLURM_SUBMIT_DIR
@@ -98,31 +97,31 @@ rmmod fastp/0.23.2
 ml Bowtie2/2.4.2-GCC-10.2.0
 
 ##Leaf Reads## #Phred33 means that each base has a 99.9% base call accuracy
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-11-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-11-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-11-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-11-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-8-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-8-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-8-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-8-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-9-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-9-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-9-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA14-9-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA14-9-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA14-9-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-12-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-12-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-22-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-22-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-23-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-23-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-24-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-24-LEAFmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA13-7-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA13-7-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA13-7-LEAFmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA13-7-LEAF_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA13-7-LEAF_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA13-7-LEAFmapped.sam
 
 ##Pollen Reads##
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-12-POLLENmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-12-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-12-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-12-POLLENmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-22-POLLENmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-22-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-22-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-22-POLLENmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-23-POLLENmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-23-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-23-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-23-POLLENmapped.sam
 
-bowtie2 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-24-POLLENmapped.sam
+bowtie2 --threads 8 -x /scratch/jts34805/W22Genome/W22 --phred33 -X 1000 --no-mixed --no-discordant -1 /scratch/jts34805/filtered/NA17-24-POLLEN_R1_001.fastq.gz -2 /scratch/jts34805/filtered/NA17-24-POLLEN_R2_001.fastq.gz -S /scratch/jts34805/mapped/NA17-24-POLLENmapped.sam
 
 
 rmmod Bowtie2
