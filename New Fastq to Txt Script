@@ -174,7 +174,7 @@ samtools index -@ 8 mapped/NA17-22-POLLENmapped.bam
 
 samtools view -@ 8 -b -o mapped/NA17-23-POLLENmapped.bam  mapped/NA17-23-POLLENmapped.sam
 samtools sort -@ 8 mapped/NA17-23-POLLENmapped.bam -o mapped/NA17-23-POLLENmapped.bam
-samtools index -@ 8 mapped/NA17-223-POLLENmapped.bam
+samtools index -@ 8 mapped/NA17-23-POLLENmapped.bam
 
 
 samtools view -@ 8 -b -o mapped/NA17-24-POLLENmapped.bam  mapped/NA17-24-POLLENmapped.sam
