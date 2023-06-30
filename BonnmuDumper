@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=Dumper24	  # Job name
+#SBATCH --job-name=BonnMuDumper	  # Job name
 #SBATCH --partition=batch               # Partition (queue) name, i.e., highmem$
 #SBATCH --ntasks=1                          # Run a single task
 #SBATCH --cpus-per-task=28                  # Number of CPU cores per task
@@ -12,3 +12,103 @@
 #SBATCH --export=NONE                       # do not load any env variables to $
 cd $SLURM_SUBMIT_DIR
 module load SRA-Toolkit/2.11.1-centos_linux64
+
+fastq-dump --split-files --gzip SRR11177284
+fastq-dump --split-files --gzip SRR11177285
+fastq-dump --split-files --gzip SRR11177286
+fastq-dump --split-files --gzip SRR11177287
+fastq-dump --split-files --gzip SRR11177288
+fastq-dump --split-files --gzip SRR11177289
+fastq-dump --split-files --gzip SRR11177290
+fastq-dump --split-files --gzip SRR11177291
+fastq-dump --split-files --gzip SRR11177292
+fastq-dump --split-files --gzip SRR11177293
+fastq-dump --split-files --gzip SRR11177294
+fastq-dump --split-files --gzip SRR11177295
+fastq-dump --split-files --gzip SRR11177296
+fastq-dump --split-files --gzip SRR11177297
+fastq-dump --split-files --gzip SRR11177298
+fastq-dump --split-files --gzip SRR11177299
+fastq-dump --split-files --gzip SRR11177300
+fastq-dump --split-files --gzip SRR11177301
+fastq-dump --split-files --gzip SRR11177302
+fastq-dump --split-files --gzip SRR11177303
+fastq-dump --split-files --gzip SRR11177304
+fastq-dump --split-files --gzip SRR11177305
+fastq-dump --split-files --gzip SRR11177306
+fastq-dump --split-files --gzip SRR11177307
+fastq-dump --split-files --gzip SRR11177308
+fastq-dump --split-files --gzip SRR11177309
+fastq-dump --split-files --gzip SRR11177310
+fastq-dump --split-files --gzip SRR11177311
+fastq-dump --split-files --gzip SRR11177312
+fastq-dump --split-files --gzip SRR11177313
+fastq-dump --split-files --gzip SRR11177314
+fastq-dump --split-files --gzip SRR11177315
+fastq-dump --split-files --gzip SRR11177316
+fastq-dump --split-files --gzip SRR11177317
+fastq-dump --split-files --gzip SRR11177318
+fastq-dump --split-files --gzip SRR11177319
+fastq-dump --split-files --gzip SRR11177320
+fastq-dump --split-files --gzip SRR11177321
+fastq-dump --split-files --gzip SRR11177322
+fastq-dump --split-files --gzip SRR11177323
+fastq-dump --split-files --gzip SRR11177324
+fastq-dump --split-files --gzip SRR11177325
+fastq-dump --split-files --gzip SRR11177326
+fastq-dump --split-files --gzip SRR11177327
+fastq-dump --split-files --gzip SRR11177328
+fastq-dump --split-files --gzip SRR11177329
+fastq-dump --split-files --gzip SRR11177330
+fastq-dump --split-files --gzip SRR11177331
+fastq-dump --split-files --gzip SRR11177332
+fastq-dump --split-files --gzip SRR11177333
+fastq-dump --split-files --gzip SRR11177334
+fastq-dump --split-files --gzip SRR11177335
+fastq-dump --split-files --gzip SRR11177336
+fastq-dump --split-files --gzip SRR11177337
+fastq-dump --split-files --gzip SRR11177338
+fastq-dump --split-files --gzip SRR11177339
+fastq-dump --split-files --gzip SRR11177340
+fastq-dump --split-files --gzip SRR11177341
+fastq-dump --split-files --gzip SRR11177342
+fastq-dump --split-files --gzip SRR11177343
+fastq-dump --split-files --gzip SRR11177344
+fastq-dump --split-files --gzip SRR11177345
+fastq-dump --split-files --gzip SRR11177346
+fastq-dump --split-files --gzip SRR11177347
+fastq-dump --split-files --gzip SRR11177348
+fastq-dump --split-files --gzip SRR11177349
+fastq-dump --split-files --gzip SRR11177350
+fastq-dump --split-files --gzip SRR11177351
+fastq-dump --split-files --gzip SRR11177352
+fastq-dump --split-files --gzip SRR11177353
+fastq-dump --split-files --gzip SRR11177354
+fastq-dump --split-files --gzip SRR11177355
+fastq-dump --split-files --gzip SRR11177356
+fastq-dump --split-files --gzip SRR11177357
+fastq-dump --split-files --gzip SRR11177358
+fastq-dump --split-files --gzip SRR11177359
+fastq-dump --split-files --gzip SRR11177360
+fastq-dump --split-files --gzip SRR11177361
+fastq-dump --split-files --gzip SRR11177362
+fastq-dump --split-files --gzip SRR11177363
+fastq-dump --split-files --gzip SRR11177364
+fastq-dump --split-files --gzip SRR11177365
+fastq-dump --split-files --gzip SRR11177366
+fastq-dump --split-files --gzip SRR11177367
+fastq-dump --split-files --gzip SRR11177368
+fastq-dump --split-files --gzip SRR11177369
+fastq-dump --split-files --gzip SRR11177370
+fastq-dump --split-files --gzip SRR11177371
+fastq-dump --split-files --gzip SRR11177372
+fastq-dump --split-files --gzip SRR11177373
+fastq-dump --split-files --gzip SRR11177374
+fastq-dump --split-files --gzip SRR11177375
+fastq-dump --split-files --gzip SRR11177376
+fastq-dump --split-files --gzip SRR11177377
+fastq-dump --split-files --gzip SRR11177378
+fastq-dump --split-files --gzip SRR11177379
+
+
+ 
