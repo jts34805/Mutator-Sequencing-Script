@@ -1,0 +1,42 @@
+## downloading Mccarty 2013 SRA data script
+
+
+#!/bin/bash
+#SBATCH --job-name=Dumper24	  # Job name
+# Partition (queue) name, i.e., highmem_p
+#SBATCH --ntasks=1                          # Run a single task
+#SBATCH --cpus-per-task=28                  # Number of CPU cores per task
+#SBATCH --mem=120gb                          # Job memory request
+#SBATCH --time=12:00:00                     # Time limit hrs:min:sec
+#SBATCH --output=log_all_plants_ortho_finder.subset.%j.out         # Standard output log
+#SBATCH --error=log_all_plants_ortho_finder.subset.%j.err          # Standard error log
+#SBATCH --mail-type=END,FAIL                # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=jts34805@uga.edu   # Where to send mail
+#SBATCH --export=NONE                       # do not load any env variables to compute node
+
+module load SRA-Toolkit/2.11.1-centos_linux64 
+
+fasterq-dump SRR11657724 --split-files | gzip
+fasterq-dump SRR11657725 --split-files | gzip
+fasterq-dump SRR11657726 --split-files | gzip
+fasterq-dump SRR11657727 --split-files | gzip
+fasterq-dump SRR11657728 --split-files | gzip
+fasterq-dump SRR11657729 --split-files | gzip
+fasterq-dump SRR11657730 --split-files | gzip
+fasterq-dump SRR11657731 --split-files | gzip
+fasterq-dump SRR11657732 --split-files | gzip
+fasterq-dump SRR11657733 --split-files | gzip
+fasterq-dump SRR11657734 --split-files | gzip
+fasterq-dump SRR11657735 --split-files | gzip
+fasterq-dump SRR11657736 --split-files | gzip
+fasterq-dump SRR11657737 --split-files | gzip
+fasterq-dump SRR11657738 --split-files | gzip
+fasterq-dump SRR11657739 --split-files | gzip
+fasterq-dump SRR11657740 --split-files | gzip
+fasterq-dump SRR11657741--split-files | gzip
+fasterq-dump SRR11657742 --split-files | gzip
+fasterq-dump SRR11657743 --split-files | gzip
+fasterq-dump SRR11657744--split-files | gzip
+fasterq-dump SRR11657745 --split-files | gzip
+fasterq-dump SRR11639190--split-files | gzip
+fasterq-dump SRR948365 --split-files | gzip
