@@ -11,3 +11,6 @@
 #SBATCH --mail-user=jts34805@uga.edu   # Where to send mail
 #SBATCH --export=NONE                       # do not load any env variables to compute node
 cd $SLURM_SUBMIT_DIR
+
+ml fastp/0.23.2
+fastp 
