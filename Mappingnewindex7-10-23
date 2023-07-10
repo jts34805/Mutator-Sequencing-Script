@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=fastptotxt
 #SBATCH --partition=batch
-#SBATCH --ntasks=1
+#SBATCH --ntasks=8
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=8
 #SBATCH --constraint=AMD
 #SBATCH --time=10:00:00
-#SBATCH --mem=60gb
+#SBATCH --mem=80gb
 
 cd $SLURM_SUBMIT_DIR
 
