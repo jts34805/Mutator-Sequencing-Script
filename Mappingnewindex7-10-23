@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --job-name=fastptotxt
+#SBATCH --partition=batch
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --constraint=AMD
+#SBATCH --time=10:00:00
+#SBATCH --mem=60gb
+
+cd $SLURM_SUBMIT_DIR
+
+ml fastp/0.23.2
+##Trimming the adapter from Read 1##
+fastp -i rawdata/NA14-8R1.fastq.gz -o processed/NA14-8R1A.fastq.gz -f 23 -A -G -Q -L
+
+
+fastp -i rawdata/NA14-9R1.fastq.gz -o processed/NA14-9R1A.fastq.gz -f 23 -A -G -Q -L
+
+fastp -i rawdata/NA14-11R1.fastq.gz -o processed/NA14-11R1A.fastq.gz -f 23 -A -G -Q -L
+
+##Put TIR border in header
+
+fastp -i processed/NA14-8R1A.fastq.gz -I Rawdata/NA14-8R2.fastq.gz -o processed/NA14-8R1B.fastq.gz -O processed/NA14-8R2B.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
+
+fastp -i processed/NA14-9R1A.fastq.gz -I Rawdata/NA14-9R2.fastq.gz -o processed/NA14-9R1B.fastq.gz -O processed/NA14-9R2B.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
+
+fastp -i processed/NA14-11R1A.fastq.gz -I Rawdata/NA14-11R2.fastq.gz -o processed/NA14-11R1B.fastq.gz -O processed/NA14-11R2B.fastq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
+
+
