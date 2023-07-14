@@ -40,9 +40,9 @@ ml Bowtie2
 ##Mapping reads to the chromosome scaffold w22 genome build and generating a sam file
 bowtie2 --threads 8 -x /scratch/jts34805/remapdir/W22Build/W22chrscaff --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-8R1.fastq.gz -2 filtered/NA14-8R2.fastq.gz -S mapped/NA14-8.sam
 
-bowtie2 --threads 8 -x /scratch/jts34805/remapdir/W22Build/W22chrscaff --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-9R1.fastq.gz -2 filtered/NA14-9R2.fastq.gz -S mapped/NA14-8.sam
+bowtie2 --threads 8 -x /scratch/jts34805/remapdir/W22Build/W22chrscaff --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-9R1.fastq.gz -2 filtered/NA14-9R2.fastq.gz -S mapped/NA14-9.sam
 
-bowtie2 --threads 8 -x /scratch/jts34805/remapdir/W22Build/W22chrscaff --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-11R1.fastq.gz -2 filtered/NA14-11R2.fastq.gz -S mapped/NA14-8.sam
+bowtie2 --threads 8 -x /scratch/jts34805/remapdir/W22Build/W22chrscaff --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/NA14-11R1.fastq.gz -2 filtered/NA14-11R2.fastq.gz -S mapped/NA14-11.sam
 
 rmmod Bowtie2
 
