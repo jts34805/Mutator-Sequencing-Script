@@ -1,1 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=fastptotxtJune2023
+#SBATCH --partition=batch
+#SBATCH --ntasks=8
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=8
+#SBATCH --constraint=AMD
+#SBATCH --time=150:00:00
+#SBATCH --mem=120gb
+
+cd $SLURM_SUBMIT_DIR
+
+ml fastp/0.23.2
+
+for file in /scratch/jts34805/June2023Museq/Justin*
+do 
+    file2="${file:
+fastp -i "$file" -o /jts34805/June2023/processed/""$file2"".fastq.gz" -f 23 -A -G -Q -L
 
