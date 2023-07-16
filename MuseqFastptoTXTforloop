@@ -14,7 +14,7 @@ ml fastp/0.23.2
 mkdir processed
 for file in rawdata/*R1*
 do
-  	file2="${file:8:-25}"
+  	file2="${file:8:-15}"
         fastp -w 8 -i "$file" -o processed/"$file2""R1A.fastq.gz" -f 23 -A -G -Q -L
 done
 mkdir filtered
