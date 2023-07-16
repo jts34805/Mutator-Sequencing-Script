@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
 #SBATCH --constraint=AMD
-#SBATCH --time=200:00:00
+#SBATCH --time=160:00:00
 #SBATCH --mem=120gb
 
 cd $SLURM_SUBMIT_DIR
