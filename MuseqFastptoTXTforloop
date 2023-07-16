@@ -21,12 +21,9 @@ mkdir filtered
 for file in rawdata/*R1*
 do
 
-	file2="${file:8:-25}"
+	file2="${file:8:-15}"
         fastp -w 8 -i processed/"$file2""R1A.fastq.gz" -I rawdata/"$file2""R2.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
         fastp -w 8 -i processed/"$file2""R1B.fastq.gz" -I processed/"$file2""R2B.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz" -U --umi_loc read2 --umi_len 8 --umi_skip 11  --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/remapdir/adapter.fa
-        rmmod fastp/0.23.2
-
- rmmod fastp/0.23.2
 
         ml Bowtie2
         mkdir mapped
