@@ -1,23 +1,31 @@
-for file in "Raw_Data/"*_R1_*.gz
-do
-	file2="${file:9:-16}"
+#!/bin/bash
+#SBATCH --job-name=July2023Sequencing
+#SBATCH --partition=batch
+#SBATCH --ntasks=8
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=2
+#SBATCH --constraint=AMD
+#SBATCH --time=165:00:00
+#SBATCH --mem=200gb
 
+cd $SLURM_SUBMIT_DIR
+
+ml fastp
+ml Bowtie2
+ml SAMtools
+for file in "rawdata/"*_R1_*.gz
+do
+	file2="${file:8:-12}"
 	### Remove TIR region and add validation sequence to read header ###
-	fastp -i $file -o Mapped_Data/read1a.fq.gz -f 23 -A -G -Q -L
-	fastp -i Mapped_Data/read1a.fq.gz -I "Raw_Data/""$file2""_R2_001.fastq.gz" -o Mapped_Data/read1b.fq.gz -O Mapped_Data/read2b.fq.gz -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h "Mapped_Data/fastp/""$file2"".html" -A -G -Q -L
-	
-	### Process UMIs, trim and filter reads ###
-	fastp -i Mapped_Data/read1b.fq.gz -I Mapped_Data/read2b.fq.gz -o Mapped_Data/read1.fq.gz -O Mapped_Data/read2.fq.gz -U --umi_loc read2 --umi_len 8 --umi_skip 11 --umi_prefix UMI --length_required 40 --trim_poly_x --cut_tail --adapter_fasta adapter.fa
-	rm fastp.html fastp.json Mapped_Data/read1a.fq.gz Mapped_Data/read1b.fq.gz Mapped_Data/read2b.fq.gz
+	fastp -w 8 -i $file -o processed/"$file2""1A.fq.gz" -f 23 -A -G -Q -L
+	fastp -w 8 -i processed/"$file2""1A.fq.gz" -o filtered/"$file2""R1.fq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h "July2023Museq/fastp/""$file2"".html" --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/remapdir/adapter.fa
+
 	### Map to genome ###
-	bowtie2 -x /home/brad/Documents/Research/Sequencing/Genomes/W22v2 --phred33 -X 1000 --no-mixed --no-discordant -1 Mapped_Data/read1.fq.gz -2 Mapped_Data/read2.fq.gz | samtools view -bS > "Mapped_Data/bowtie2_out/""$file2"".bam"
+	bowtie2 --threads 8 -x scratch/jts34805/W22Build/W22chrscaff --phred33 -U filtered/"$file2""R1.fq.gz" | samtools view -bS > mapped/"$file2"".bam"
 	
 	### Deduplicate reads using UMIs ###
-	samtools sort "Mapped_Data/bowtie2_out/""$file2"".bam" -o "Mapped_Data/bowtie2_out/""$file2"".bam"
-	samtools index "Mapped_Data/bowtie2_out/""$file2"".bam"
-	umi_tools group -I "Mapped_Data/bowtie2_out/""$file2"".bam" --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S "Mapped_Data/dedup/""$file2"".bam"
-	rm "Mapped_Data/bowtie2_out/""$file2"".bam" "Mapped_Data/bowtie2_out/""$file2"".bam.bai"
+	samtools sort -@ 8 mapped/"$file2"".bam" -o "mapped""$file2"".bam"
+	samtools index -@ 8 mapped/"$file2"".bam"
 	### Prepare bam files for R ###
-	samtools view -f 64 -F 4 "Mapped_Data/dedup/""$file2"".bam" | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > "Mapped_Data/tables/""$file2""_out.txt"
-
+	samtools view -@ 8 -f 64 -F 4 mapped/"$file2"".bam" | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > "Mapped_Data/tables/""$file2""_out.txt"
 done
