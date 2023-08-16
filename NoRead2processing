@@ -27,5 +27,5 @@ do
 	samtools sort -@ 8 mapped/"$file2"".bam" -o "mapped""$file2"".bam"
 	samtools index -@ 8 mapped/"$file2"".bam"
 	### Prepare bam files for R ###
-	samtools view -@ 8 -f 64 -F 4 mapped/"$file2"".bam" | awk -F" " '{sub(/.*TIR_/,"",$1); sub(/BX:Z:/,"",$(NF)); print $3, $4, $9, $1, $(NF), $5, length($10), $10, $8}' | awk '{sub(/:UMI_.*/,"",$4); print $1, $2, $9, $3, $4, $5, $6, $7, $8}' > "Mapped_Data/tables/""$file2""_out.txt"
+samtools view -F 4 mapped/"$file2"".bam" | awk -F" " '{sub(/.*TIR_/,"",$1); print $3, $4, $1, $2, length($10), $5}' > txtfiles/"$file2"".txt"
 done
