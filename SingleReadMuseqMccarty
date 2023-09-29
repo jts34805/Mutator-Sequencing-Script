@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=July2023Sequencing
+#SBATCH --job-name=SingleendMcCartyData
 #SBATCH --partition=batch
 #SBATCH --ntasks=8
 #SBATCH --nodes=4
@@ -20,7 +20,7 @@ do
 	fastp -w 8 -i $file -o processed/"$file2""1A.fq.gz" -f 23 -A -G -Q -L
 	fastp -w 8 -i processed/"$file2""1A.fq.gz" -o filtered/"$file2""R1.fq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h "McCartyData/""$file2"".html" --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/remapdir/adapter.fa
 	### Map to genome ###
-	bowtie2 --threads 8 -x scratch/jts34805/W22Build/W22chrscaff --phred33 -U filtered/"$file2""R1.fq.gz" | samtools view -bS > mapped/"$file2"".bam"
+	bowtie2 --threads 8 -x scratch/jts34805/B73V5Build/B73V5 --phred33 -U filtered/"$file2""R1.fq.gz" | samtools view -bS > mapped/"$file2"".bam"
 	
 	### Deduplicate reads using UMIs ###
 	samtools sort -@ 8 mapped/"$file2"".bam" -o "mapped""$file2"".bam"
