@@ -13,18 +13,18 @@ cd $SLURM_SUBMIT_DIR
 ml fastp
 ml Bowtie2
 ml SAMtools
-for file in "rawdata/"*_f_*.gz
+for file in "rawdata/"*.gz
 do
-	file2="${file:8:-5}"
-	### Remove TIR region and add validation sequence to read header ###
-	fastp -w 8 -i $file -o processed/"$file2""1A.fq.gz" -f 23 -A -G -Q -L
-	fastp -w 8 -i processed/"$file2""1A.fq.gz" -o filtered/"$file2""R1.fq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h "McCartyData/""$file2"".html" --length_required 40 
-	### Map to genome ###
-	bowtie2 --threads 8 -x scratch/jts34805/B73V5Build/B73V5 --phred33 -U filtered/"$file2""R1.fq.gz" | samtools view -bS > mapped/"$file2"".bam"
-	
-	### Deduplicate reads using UMIs ###
-	samtools sort -@ 8 mapped/"$file2"".bam" -o "mapped""$file2"".bam"
-	samtools index -@ 8 mapped/"$file2"".bam"
-	### Prepare bam files for R ###
+  	file2="${file:8:-5}"
+       	### Remove TIR region and add validation sequence to read header ###
+        fastp -w 8 -i $file -o processed/"$file2""1A.fq.gz" -f 27 -A -G -Q -L
+        fastp -w 8 -i processed/"$file2""1A.fq.gz" -o filtered/"$file2""R1.fq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR 
+       	### Map to genome ###
+        bowtie2 --threads 8 -x /home/jts34805/Genomes/B73V5 --phred33 -U filtered/"$file2""R1.fq.gz" | samtools view -bS > mapped/"$file2"".bam"
+
+       	### Deduplicate reads using UMIs ###
+        samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
+        samtools index -@ 8 mapped/"$file2"".bam"
+       	### Prepare bam files for R ###
 samtools view -F 4 mapped/"$file2"".bam" | awk -F" " '{sub(/.*TIR_/,"",$1); print $3, $4, $1, $2, length($10), $5}' > txtfiles/"$file2"".txt"
 done
