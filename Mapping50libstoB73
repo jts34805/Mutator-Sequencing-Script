@@ -10,17 +10,14 @@
 
 cd $SLURM_SUBMIT_DIR
 
-mkdir processed
-mkdir filtered
 mkdir mapped
 mkdir dedup
 mkdir txtfiles
-ml fastp/0.23.2
 ml Bowtie2
 ml SAMtools
 ml UMI-tools/1.0.1-foss-2019b-Python-3.7.4
 
-for file in rawdata/*R1*
+for file in filtered/*R1*
 do
   	file2="${file:8:-15}"
         fastp -w 16 -i "$file" -o processed/"$file2""R1A.fastq.gz" -f 23 -A -G -Q -L
@@ -37,9 +34,9 @@ do
   file2="${file:8:-15}"
 bowtie2 --threads 16 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/"$file2""R1.fastq.gz" -2 filtered/"$file2""R2.fastq.gz" | samtools view -@ 16 -b -o mapped/"$file2"".bam"
 
-samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
-samtools index -@ 8 mapped/"$file2"".bam"
-
+samtools sort -@ 16 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
+samtools index -@ 16 mapped/"$file2"".bam"
+d
 
 umi_tools group -I mapped/"$file2"".bam" --paired --chimeric-pairs discard --unpaired-reads discard --output-bam -S dedup/"$file2"".Dedup.bam"
 
