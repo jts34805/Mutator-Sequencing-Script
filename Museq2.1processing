@@ -23,7 +23,7 @@ do
         fastp -i processed/"$file2""R1A.fastq.gz -I rawdata/"$file2""_R2_001.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h html/"$file2"".html" -A -G -Q -L
 
         fastp -i processed/"$file2""R1B.fastq.gz" -I processed/"$file2""R2B.fastq.gz" -o processed/"$file2""R1C.fastq.gz" -O processed/"$file2""R2C.fastq.gz" -U --umi_loc read2 --umi_len 8 --umi_prefix UMI -A -G -Q -L
-        fastp -i processed/"$file2""R1C.fastq.gz" -I processed/"$file2"R2C.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz -U --umi_loc read2 --umi_len 11 --umi_prefix BC --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/remapdir/adapter.fa
+        fastp -i processed/"$file2""R1C.fastq.gz" -I processed/"$file2"R2C.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz -U --umi_loc read2 --umi_len 11 --umi_prefix BC --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/adapter2.1.fa
 
 
 
