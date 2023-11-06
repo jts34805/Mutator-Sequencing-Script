@@ -12,6 +12,9 @@
 #SBATCH --export=NONE                       # do not load any env variables to compute node
 
 ml fastp/0.23.2
+ml SAMtools
+ml Bowtie2
+ml UMI-tools
 
 fastp -i bonnmu/rawdata/SRR_2 -o bonnmu/processed/SRR_2A -f 23 A -G -Q -L 
 fastp -i bonnmu/processed/SRR_2A -I bonnmu/rawdata/SRR_1 -o bonnmu/processed/SRR_1B_001.fastq.gz -O bonnmu/processed/SRR_2B_001.fastq.gz -U --umi_loc read2 --umi_len 6 --umi_prefix TIR -h fastp.html -A -G -Q -L
