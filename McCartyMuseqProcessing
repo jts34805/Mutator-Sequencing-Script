@@ -1,0 +1,32 @@
+#!/bin/bash
+#SBATCH --job-name=BonnMuProcessing	  # Job name
+#SBATCH --partition=batch               # Partition (queue) name, i.e., highmem_p
+#SBATCH --ntasks=8                        # Run a single task
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=2
+#SBATCH --mem=120gb                          # Job memory request
+#SBATCH --time=72:00:00                     # Time limit hrs:min:sec
+
+cd $SLURM_SUBMIT_DIR
+
+ml fastp/0.23.2
+ml SAMtools
+ml Bowtie2
+ml UMI-tools
+
+for file in rawdata/*_1*
+do
+  	file2="${file:8:-11}"
+
+fastp -i rawdata/$file -o processed/"$file2""R1A.fastq.gz" -f 28 -A -G -Q -L 
+fastp -i processed/"$file2""R1A.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi prefix TIR -A -G -Q -L 
+fastp -w 8 -i processed/"$file2""R1B.fastq.gz" -o filtered/"$file2""R1.fastq.gz" --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/adapter2.1.fa
+
+bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/"$file2""R1.fastq.gz" | samtools view -@ 8 -b -o mapped/"$file2"".bam"
+
+samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
+samtools index -@ 8 mapped/"$file2"".bam"
+
+done
+
+#samtools view -f 64 -F 4 dedup/"$file2"".Dedup.bam" | awk -F" " '{split($1, a, "_"); print $3, $4, $8, $9, substr(a[2],1,6), substr(a[3],1,8), $5, length($10), a[4]}' > txtfiles/"$file2"".txt"
