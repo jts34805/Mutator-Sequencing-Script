@@ -29,4 +29,4 @@ samtools index -@ 8 mapped/"$file2"".bam"
 
 done
 
-#samtools view -f 64 -F 4 dedup/"$file2"".Dedup.bam" | awk -F" " '{split($1, a, "_"); print $3, $4, $8, $9, substr(a[2],1,6), substr(a[3],1,8), $5, length($10), a[4]}' > txtfiles/"$file2"".txt"
+samtools view -f 64 -F 4 mapped/"$file2"".bam" | awk -F" " '{split($1, a, ":"); print $3, $4, $8, $9, substr(a[2],1,6), substr(a[3],1,8), $5, length($10), a[4]}' > txtfiles/"$file2"".txt"
