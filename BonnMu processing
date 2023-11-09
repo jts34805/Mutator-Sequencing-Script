@@ -19,8 +19,9 @@ do
   	file2="${file:8:-11}"
 
 fastp -i rawdata/$file -o processed/"$file2""R2A.fastq.gz" -f 23 -A -G -Q -L 
-fastp -i processed/"$file2""R2A.fastq.gz" -o processed/"$file2""R2B.fastq.gz" -U --umi_loc read2 --umi_len 6 --umi prefix TIR -A -G -Q -L 
-fastp -i rawdata/"$file2""_1.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -f 16 -A -G -Q -L
+fastp -i rawdata/"$file2""_1.fastq.gz" -o processed/"$file2""R1A.fastq.gz" -f 16 -A -G -Q -L
+fastp -I processed/"$file2""R2A.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -i processed/"$file2""R1A.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -U --umi_loc read2 --umi_len 6 --umi prefix TIR -A -G -Q -L 
+
 
 fastp -w 8 -i processed/"$file2""R1B.fastq.gz" -I processed/"$file2""R2B.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz" --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/adapter2.1.fa
 
