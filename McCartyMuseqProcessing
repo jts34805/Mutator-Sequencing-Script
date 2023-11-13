@@ -29,4 +29,4 @@ samtools index -@ 8 mapped/"$file2"".bam"
 
 done
 
-samtools view -F 4 mapped/"$file2"".bam" | awk -F " " '{split($1, a, ":"); print $3, $4, substr(a[2],1,6), length($10)}'>txtfiles/"file2"".txt" 
+samtools view -F 4 mapped/"$file2"".bam" | awk -F " " '{split($1, a, ":"); print $3, $4, substr(a[2],1,6), length($10)}'>txtfiles/"$file2"".txt" 
