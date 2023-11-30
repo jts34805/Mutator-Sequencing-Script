@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=BonnMuProcessing	  # Job name
+#SBATCH --job-name=McCarty2013	  # Job name
 #SBATCH --partition=batch               # Partition (queue) name, i.e., highmem_p
 #SBATCH --ntasks=8                        # Run a single task
 #SBATCH --nodes=4
@@ -22,7 +22,7 @@ fastp -i $file -o processed/"$file2""R1A.fastq.gz" -f 27 -A -G -Q -L
 fastp -i processed/"$file2""R1A.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi prefix TIR -A -G -Q -L 
 fastp -w 8 -i processed/"$file2""R1B.fastq.gz" -o filtered/"$file2""R1.fastq.gz" --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/adapter2.1.fa
 
-bowtie2 --threads 8 -x scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -U filtered/"$file2""R1.fastq.gz" | samtools view -@ 8 -b -o mapped/"$file2"".bam"
+bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -U filtered/"$file2""R1.fastq.gz" | samtools view -@ 8 -b -o mapped/"$file2"".bam"
 
 samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
 samtools index -@ 8 mapped/"$file2"".bam"
