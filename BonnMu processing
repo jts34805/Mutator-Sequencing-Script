@@ -30,8 +30,7 @@ bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no
 samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
 samtools index -@ 8 mapped/"$file2"".bam"
 
+
+samtools view -F 4 mapped/"$file2"".bam" | awk -F " " '{split($1, a, ":"); print $3, $4,$8,$9, substr(a[2],1,6), $5, length($10)}'>txtfiles/"$file2"".txt"
+
 done
-
-samtools view -F 4 mapped/"$file2"".bam" | awk -F " " '{split($1, a, ":"); print $3, $4, $8,$9, substr(a[2],1,6), $5, length($10)}'>txtfiles/"$file2"".txt" 
-
-
