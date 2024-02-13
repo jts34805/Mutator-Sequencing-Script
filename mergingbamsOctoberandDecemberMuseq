@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name=MergeBams
+#SBATCH --partition=batch
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --time=165:00:00
+#SBATCH --mem=10gb
+
+cd $SLURM_SUBMIT_DIR
+
+ml SAMtools
+
+samtools merge -o Merged/74E.merge.bam ResequencedBams/*74E* OctoberBams/*74E* 
+samtools merge -o Merged/75E.merge.bam ResequencedBams/*75E* OctoberBams/*75E* 
+samtools merge -o Merged/76E.merge.bam ResequencedBams/*76E* OctoberBams/*76E* 
+samtools merge -o Merged/78E.merge.bam ResequencedBams/*78E OctoberBams/*78E* 
+samtools merge -o Merged/79E.merge.bam ResequencedBams/*79E* OctoberBams/*79E* 
+samtools merge -o Merged/83E.merge.bam ResequencedBams/*83E* OctoberBams/*83E 
+samtools merge -o Merged/A74.merge.bam ResequencedBams/*A74* OctoberBams/*A74* 
+samtools merge -o Merged/A75.merge.bam ResequencedBams/*A75* OctoberBams/*A75* 
+samtools merge -o Merged/B74T.merge.bam ResequencedBams/*B74T* OctoberBams/*B74T 
+samtools merge -o Merged/B74.merge.bam ResequencedBams/*B74_S39* OctoberBams/*B74_6060* 
+samtools merge -o Merged/B75T.merge.bam ResequencedBams/*B75T* OctoberBams/*B75T* 
+samtools merge -o Merged/B76.merge.bam ResequencedBams/*B76* OctoberBams/*B76* 
+samtools merge -o Merged/B78.merge.bam ResequencedBams/*B78* OctoberBams/*B78* 
+samtools merge -o Merged/B79.merge.bam ResequencedBams/*B79* OctoberBams/*B79* 
+samtools merge -o Merged/B83.merge.bam ResequencedBams/*B83* OctoberBams/*B83* 
