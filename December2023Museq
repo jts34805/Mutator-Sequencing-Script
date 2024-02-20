@@ -19,15 +19,15 @@ do
         file2="${file:8:-15}"
         fastp -w 8 -i $file -o processed/"$file2""R1A.fastq.gz" -f 23 -A -G -Q -L
 
-        fastp -i processed/"$file2""R1A.fastq.gz" -I rawdata/"$file2""R2_001.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix $
+        fastp -i processed/"$file2""R1A.fastq.gz" -I rawdata/"$file2""R2_001.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h html/"$file2"".html" -A -G -Q -L
 
-        fastp -i processed/"$file2""R1B.fastq.gz" -I processed/"$file2""R2B.fastq.gz" -o processed/"$file2""R1C.fastq.gz" -O processed/"$file2""R2C.fastq.gz" -U --umi_loc read2 --umi_len 8 --umi_prefix U$
-        fastp -i processed/"$file2""R1C.fastq.gz" -I processed/"$file2""R2C.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz" -U --umi_loc read2 --umi_len 11 --umi_prefix BC -$
-
-
+        fastp -i processed/"$file2""R1B.fastq.gz" -I processed/"$file2""R2B.fastq.gz" -o processed/"$file2""R1C.fastq.gz" -O processed/"$file2""R2C.fastq.gz" -U --umi_loc read2 --umi_len 8 --umi_prefix UMI -A -G -Q -L
+        fastp -i processed/"$file2""R1C.fastq.gz" -I processed/"$file2""R2C.fastq.gz" -o filtered/"$file2""R1.fastq.gz" -O filtered/"$file2""R2.fastq.gz" -U --umi_loc read2 --umi_len 11 --umi_prefix BC --length_required 40 --trim_poly_x --cut_tail --adapter_fasta /scratch/jts34805/adapter2.1.fa
 
 
-bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/"$file2""R1.fastq.gz" -2 filtered/"$file2""R2.fastq.gz" | samtools view -@ 8 -b -o mapped/"$f$
+
+
+bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/"$file2""R1.fastq.gz" -2 filtered/"$file2""R2.fastq.gz" | samtools view -@ 8 -b -o mapped/"$file2"".bam"
 
 
         samtools sort -@ 8 mapped/"$file2"".bam" -o mapped/"$file2"".bam"
