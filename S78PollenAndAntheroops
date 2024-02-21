@@ -5,11 +5,14 @@
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=2
 #SBATCH --time=165:00:00
-#SBATCH --mem=15gb
+#SBATCH --mem=30gb
 
+ml Bowtie2
 ml SAMtools
 ml UMI-tools
 
+bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/Brad_S78-1A_S19_R1.fastq.gz -2 filtered/Brad_S78-1A_S19_R2.fastq.gz | samtools view -@ 8 -b -o mapped/Brad_S78-1A_S19_.bam
+bowtie2 --threads 8 -x /scratch/jts34805/B73V5Build/B73V5 --phred33 -X 1000 --no-mixed --no-discordant -1 filtered/Brad_S78-1B_Glume_S29_R1.fastq.gz -2 filtered/Brad_S78-1B_Glume_S29_R2.fastq.gz | samtools view -@ 8 -b -o mapped/Brad_S78-1B_Glume_S29_.bam
 
 samtools sort -@ 8 mapped/Brad_S78-1A_S19_.bam -o mapped/Brad_S78-1A_S19_.bam
         samtools index -@ 8 mapped/Brad_S78-1A_S19_.bam
