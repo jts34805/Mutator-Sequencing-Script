@@ -1,0 +1,68 @@
+#!/bin/bash
+#SBATCH --job-name=MergeBams
+#SBATCH --partition=batch
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --time=165:00:00
+#SBATCH --mem=50gb
+
+
+cat 74E_S69_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/74E_6060_S1_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_74E_S35_R1_001.fastq.gz > merged/74E_April_Merged_R1.fastq.gz
+cat 74E_S69_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/74E_6060_S1_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_74E_S35_R2_001.fastq.gz > merged/74E_April_Merged_R2.fastq.gz
+
+cat 78E_S70_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/78E_6060_S10_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_78E_S43_R1_001.fastq.gz > merged/78E_April_Merged_R1.fastq.gz
+cat 78E_S70_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/78E_6060_S10_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_78E_S43_R2_001.fastq.gz > merged/78E_April_Merged_R2.fastq.gz
+
+cat 79E_S71_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/79E_6060_S11_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_79E_S44_R1_001.fastq.gz > merged/79E_April_Merged_R1.fastq.gz
+cat 79E_S71_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/79E_6060_S11_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_79E_S44_R2_001.fastq.gz > merged/79E_April_Merged_R2.fastq.gz 
+
+cat 83E_S72_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/83E_6060_S12_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_83E_S45_R1_001.fastq.gz > merged/83E_April_Merged_R1.fastq.gz 
+cat 83E_S72_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/83E_6060_S12_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_83E_S45_R2_001.fastq.gz > merged/83E_April_Merged_R2.fastq.gz 
+
+cat A75_S73_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/A75_6060_S13_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A75_S46_R1_001.fastq.gz > merged/A75_April_Merged_R1.fastq.gz 
+cat A75_S73_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/A75_6060_S13_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A75_S46_R2_001.fastq.gz > merged/A75_April_Merged_R2.fastq.gz 
+
+cat B78_S75_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/B78_6060_S14_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B78_S47_R1_001.fastq.gz > merged/B78_April_Merged_R1.fastq.gz
+cat B78_S75_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/B78_6060_S14_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B78_S47_R2_001.fastq.gz > merged/B78_April_Merged_R2.fastq.gz
+ 
+cat B79_S76_L003_R1_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/B79_6060_S15_L001_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B79_S48_R1_001.fastq.gz > merged/B79_April_Merged_R1.fastq.gz 
+cat B79_S76_L003_R2_001.fastq.gz /scratch/jts34805/October2023Museq/rawdata/B79_6060_S15_L001_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B79_S48_R2_001.fastq.gz > merged/B79_April_Merged_R2.fastq.gz
+
+cat A61_S78_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A61_S21_R1_001.fastq.gz > merged/A61_April_Merged_R1.fastq.gz 
+cat A61_S78_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A61_S21_R2_001.fastq.gz > merged/A61_April_Merged_R2.fastq.gz 
+
+cat A63_S79_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A63_S22_R1_001.fastq.gz > merged/A63_April_Merged_R1.fastq.gz
+cat A63_S79_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A63_S22_R2_001.fastq.gz > merged/A63_April_Merged_R2.fastq.gz
+
+cat A65_S80_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A65_S23_R1_001.fastq.gz > merged/A65_April_Merged_R1.fastq.gz 
+cat A65_S80_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A65_S23_R2_001.fastq.gz > merged/A65_April_Merged_R2.fastq.gz 
+
+cat A69_S81_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A69_S24_R1_001.fastq.gz >merged/A69_April_Merged_R1.fastq.gz
+cat A69_S81_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_A69_S24_R2_001.fastq.gz >merged/A69_April_Merged_R2.fastq.gz
+
+cat B75_S82_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B75_S40_R1_001.fastq.gz > merged/B75_April_Merged_R1.fastq.gz
+cat B75_S82_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_B75_S40_R2_001.fastq.gz > merged/B75_April_Merged_R2.fastq.gz
+
+cat MI-2_S84_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-2_S26_R1_001.fastq.gz > merged/MI-2_April_Merged_R1.fastq.gz
+cat MI-2_S84_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-2_S26_R2_001.fastq.gz > merged/MI-2_April_Merged_R2.fastq.gz
+
+cat MI-3T_S86_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-3T_S28_R1_001.fastq.gz > merged/MI-3T_April_Merged_R1.fastq.gz
+cat MI-3T_S86_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-3T_S28_R2_001.fastq.gz > merged/MI-3T_April_Merged_R2.fastq.gz
+
+cat MI-3_S85_L003_R1_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-3_S27_R1_001.fastq.gz > merged/MI-3_April_Merged_R1.fastq.gz
+cat MI-3_S85_L003_R2_001.fastq.gz /scratch/jts34805/December2023MuSeq/rawdata/Brad_MI-3_S27_R2_001.fastq.gz > merged/MI-3_April_Merged_R2.fastq.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
