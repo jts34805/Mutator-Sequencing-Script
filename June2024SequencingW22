@@ -16,7 +16,7 @@ ml UMI-tools
 
 for file in rawdata/*R1*
 do
-        file2="${file:8:-16}"
+        file2="${file:8:-15}"
         fastp -w 8 -i $file -o processed/"$file2""R1A.fastq.gz" -f 23 -A -G -Q -L
 
         fastp -i processed/"$file2""R1A.fastq.gz" -I rawdata/"$file2""_R2.fastq.gz" -o processed/"$file2""R1B.fastq.gz" -O processed/"$file2""R2B.fastq.gz" -U --umi_loc read1 --umi_len 6 --umi_prefix TIR -h html/"$file2"".html" -A -G -Q -L
