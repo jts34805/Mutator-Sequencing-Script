@@ -1,0 +1,23 @@
+cat *B74T*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R1_001.fastq.gz
+cat *B74T*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R2_001.fastq.gz
+
+cat *B74_*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R1_001.fastq.gz
+cat *B74_*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R2_001.fastq.gz
+
+cat *B75T*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75T_R1_001.fastq.gz
+cat *B75T*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75T_R2_001.fastq.gz
+
+cat *B75_*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75_R1_001.fastq.gz
+cat *B75_*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75_R2_001.fastq.gz
+
+cat *B76*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B76_R1_001.fastq.gz
+cat *B76*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B76_R2_001.fastq.gz
+
+cat *B78*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B78_R1_001.fastq.gz
+cat *B78*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B78_R2_001.fastq.gz
+
+cat *B79*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B79_R1_001.fastq.gz
+cat *B79*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B79_R2_001.fastq.gz
+
+cat *B83*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B83_R1_001.fastq.gz
+cat *B83*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B83_R2_001.fastq.gz
