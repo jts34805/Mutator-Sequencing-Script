@@ -1,8 +1,8 @@
-cat *B74T*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R1_001.fastq.gz
-cat *B74T*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R2_001.fastq.gz
+cat B74T_6060_S8_L001_R1_001.fastq.gz Brad_B74T_S42_R1_001.fastq.gz > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R1_001.fastq.gz
+cat B74T_6060_S8_L001_R2_001.fastq.gz Brad_B74T_S42_R2_001.fastq.gz > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74T_R2_001.fastq.gz
 
-cat *B74_*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R1_001.fastq.gz
-cat *B74_*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R2_001.fastq.gz
+cat B74_6060_S5_L001_R1_001.fastq.gz Brad_B74_S39_R1_001.fastq.gz > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R1_001.fastq.gz
+cat Brad_B74_S39_R2_001.fastq.gz B74_6060_S5_L001_R2_001.fastq.gz > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B74_R2_001.fastq.gz
 
 cat *B75T*R1* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75T_R1_001.fastq.gz
 cat *B75T*R2* > /scratch/jts34805/Remap6LeafSamplesOct2024/rawdata/B75T_R2_001.fastq.gz
