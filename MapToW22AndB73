@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH --job-name=MuAllele
+#SBATCH --partition=highmem_p
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=7-00:00:00
 #SBATCH --output=MuAllele_%j.out
 #SBATCH --error=MuAllele_%j.err
-
 ############################################################
 # Setup
 ############################################################
