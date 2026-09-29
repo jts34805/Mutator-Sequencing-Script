@@ -1,0 +1,278 @@
+```bash
+#!/bin/bash
+
+#SBATCH --job-name=MuAllele
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=7-00:00:00
+#SBATCH --output=logs/MuAllele_%j.out
+#SBATCH --error=logs/MuAllele_%j.err
+
+
+############################################################
+# Setup
+############################################################
+
+set -euo pipefail
+
+export PATH=$PATH:~/.local/bin
+
+
+############################################################
+# Create directories
+############################################################
+
+mkdir -p processed
+mkdir -p filtered
+mkdir -p mapped
+mkdir -p txtfiles
+mkdir -p chunks
+mkdir -p logs
+
+
+############################################################
+# FASTQ preprocessing
+############################################################
+
+for file in rawdata/*R1*
+do
+    file2="${file:8:-16}"
+
+    if [ ! -f filtered/"$file2""R1.fastq.gz" ]; then
+
+        fastp \
+            -w 8 \
+            -i "$file" \
+            -o processed/"$file2""R1A.fastq.gz" \
+            -f 23 \
+            -A -G -Q -L
+
+        fastp \
+            -i processed/"$file2""R1A.fastq.gz" \
+            -I rawdata/"$file2""_R2_001.fastq.gz" \
+            -o processed/"$file2""R1B.fastq.gz" \
+            -O processed/"$file2""R2B.fastq.gz" \
+            -U \
+            --umi_loc read1 \
+            --umi_len 6 \
+            --umi_prefix TIR \
+            -h html/"$file2"".html" \
+            -A -G -Q -L
+
+        rm processed/"$file2""R1A.fastq.gz"
+
+        fastp \
+            -i processed/"$file2""R1B.fastq.gz" \
+            -I processed/"$file2""R2B.fastq.gz" \
+            -o processed/"$file2""R1C.fastq.gz" \
+            -O processed/"$file2""R2C.fastq.gz" \
+            -U \
+            --umi_loc read2 \
+            --umi_len 8 \
+            --umi_prefix UMI \
+            -A -G -Q -L
+
+        find processed/ -name "*B.fastq.gz" -delete
+
+        fastp \
+            -i processed/"$file2""R1C.fastq.gz" \
+            -I processed/"$file2""R2C.fastq.gz" \
+            -o filtered/"$file2""R1.fastq.gz" \
+            -O filtered/"$file2""R2.fastq.gz" \
+            -U \
+            --umi_loc read2 \
+            --umi_len 11 \
+            --umi_prefix BC \
+            --length_required 40 \
+            --trim_poly_x \
+            --cut_tail \
+            --adapter_fasta adapter2.1.fa
+
+        find processed/ -name "*C.fastq.gz" -delete
+
+    fi
+done
+
+
+############################################################
+# Split filtered FASTQ files into chunks
+############################################################
+
+mkdir -p chunks mapped txtfiles
+
+for file in filtered/*R1.fastq.gz
+do
+    sample=$(basename "$file" R1.fastq.gz)
+
+    ############################################################
+    # Split sample into chunks (only once)
+    ############################################################
+
+    if [ ! -f chunks/${sample}R1.part_001.fastq.gz ]; then
+
+        seqkit split2 \
+            -1 filtered/${sample}R1.fastq.gz \
+            -2 filtered/${sample}R2.fastq.gz \
+            -s 5000000 \
+            -O chunks
+
+    fi
+
+
+    ############################################################
+    # Process each chunk
+    ############################################################
+
+    for chunk1 in chunks/${sample}R1.part_*.fastq.gz
+    do
+        chunk2=${chunk1/R1.part_/R2.part_}
+
+        chunkbase=$(basename "$chunk1" .fastq.gz)
+
+        # Remove the R1 from downstream filenames
+        chunkprefix=${chunkbase/R1.part_/.part_}
+
+
+        ########################################################
+        # Map W22
+        ########################################################
+
+        if [ ! -f txtfiles/${chunkprefix}.txt ]; then
+
+            bowtie2 \
+                --threads "$SLURM_CPUS_PER_TASK" \
+                -x Genome/W22v3 \
+                -X 1000 \
+                --reorder \
+                --no-mixed \
+                --no-discordant \
+                -1 "$chunk1" \
+                -2 "$chunk2" \
+            | samtools view \
+                -@"$SLURM_CPUS_PER_TASK" \
+                -b \
+                -o mapped/${chunkprefix}_W22.bam
+
+
+            ########################################################
+            # Map B73
+            ########################################################
+
+            bowtie2 \
+                --threads "$SLURM_CPUS_PER_TASK" \
+                -x Genome/B73v5 \
+                -X 1000 \
+                --reorder \
+                --no-mixed \
+                --no-discordant \
+                -1 "$chunk1" \
+                -2 "$chunk2" \
+            | samtools view \
+                -@"$SLURM_CPUS_PER_TASK" \
+                -b \
+                -o mapped/${chunkprefix}_B73.bam
+
+
+            ########################################################
+            # Convert W22 BAM to text
+            ########################################################
+
+            samtools view -f64 mapped/${chunkprefix}_W22.bam \
+            | awk '
+            function adjborder(start,end,len){
+                if(len>0)
+                    return start
+                else
+                    return(end-len-1)
+            }
+
+            $1~/TIR_T[AG]TCT[CA]/{
+                split($1,a,"_")
+
+                print $3,
+                      adjborder($4,$8,$9),
+                      $9,
+                      substr(a[2],1,6),
+                      substr(a[3],1,8),
+                      $5
+            }' \
+            > txtfiles/${chunkprefix}_W22.tmp
+
+
+            ########################################################
+            # Convert B73 BAM to text
+            ########################################################
+
+            samtools view -f64 mapped/${chunkprefix}_B73.bam \
+            | awk '
+            function adjborder(start,end,len){
+                if(len>0)
+                    return start
+                else
+                    return(end-len-1)
+            }
+
+            $1~/TIR_T[AG]TCT[CA]/{
+                print $3,
+                      adjborder($4,$8,$9),
+                      $9,
+                      $5
+            }' \
+            > txtfiles/${chunkprefix}_B73.tmp
+
+
+            ########################################################
+            # Combine W22 and B73 outputs
+            ########################################################
+
+            paste -d" " \
+                txtfiles/${chunkprefix}_W22.tmp \
+                txtfiles/${chunkprefix}_B73.tmp \
+                > txtfiles/${chunkprefix}.txt
+
+
+            ########################################################
+            # Remove temporary files
+            ########################################################
+
+            rm txtfiles/${chunkprefix}_W22.tmp
+            rm txtfiles/${chunkprefix}_B73.tmp
+
+            rm mapped/${chunkprefix}_W22.bam
+            rm mapped/${chunkprefix}_B73.bam
+
+        fi
+
+    done
+
+
+    ############################################################
+    # Merge chunk outputs
+    ############################################################
+
+    if [ ! -f txtfiles/${sample}.txt.gz ]; then
+
+        cat txtfiles/${sample}.part_*.txt \
+        | sort \
+        | uniq -c \
+        > txtfiles/${sample}.txt
+
+        gzip txtfiles/${sample}.txt
+
+    fi
+
+
+    ############################################################
+    # Cleanup after successful completion
+    ############################################################
+
+    if [ -f txtfiles/${sample}.txt.gz ]; then
+
+        rm chunks/${sample}R1.part_*.fastq.gz
+        rm chunks/${sample}R2.part_*.fastq.gz
+        rm txtfiles/${sample}.part_*.txt
+
+    fi
+
+done
+```
